@@ -1,3 +1,8 @@
+/* Stefany Carrillo
+ * Vladik Kreinovich
+ * CS3350 Automata
+ * This program is meant to emulate a universal Turing Machine
+ */
 import java.util.*;
 
 public class TuringMachine {
@@ -37,9 +42,9 @@ public class TuringMachine {
 		char[][] LR = new char[N][M];
 		int[][] symbol = new int[N][M];
 		
-		for(int i = 0; i < tape.length; i++){	//this for loop changes 0's to 2
-			if(tape[i] == 0)					//0 is blank, 1 is 1 and 2 is 0
-				tape[i] = 2;
+		for(int i = 0; i < tape.length; i++){	
+			if(tape[i] == 0)	//this for loop changes 0's to 2
+				tape[i] = 2;	//0 is blank, 1 is 1 and 2 is 0
 		}//end for loop
 		
 		//RULES FOR TURING MACHINE
@@ -94,9 +99,9 @@ public class TuringMachine {
 		char[][] LR = new char[N][M];
 		int[][] symbol = new int[N][M];
 		
-		for(int i = 0; i < tape.length; i++){	//this for loop changes 0's to 2
-			if(tape[i] == 0)					//0 is blank, 1 is 1 and 2 is 0
-				tape[i] = 2;
+		for(int i = 0; i < tape.length; i++){	
+			if(tape[i] == 0)	//this for loop changes 0's to 2
+				tape[i] = 2;	//0 is blank, 1 is 1 and 2 is 0
 		}//end for loop
 		
 		//RULES FOR TURING MACHINE
