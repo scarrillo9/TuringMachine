@@ -2,6 +2,7 @@ import java.util.*;
 
 public class TuringMachine {
 	public static void main(String[] args){
+		
 		System.out.println("--Odd evaluation--");
 		int[] tape = userInput();
 		acceptsOdd(tape);
@@ -13,6 +14,7 @@ public class TuringMachine {
 	}//end main method
 	
 	public static int[] userInput(){
+		
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Input word to evaluate: ");
