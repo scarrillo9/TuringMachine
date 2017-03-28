@@ -104,7 +104,7 @@ public class TuringMachine {
 			
 			//like earlier, checking that the head
 			//is still not out of bounds
-			if(head == tape.length-1)
+			if(head == tape.length)
 				nextSym = 0;
 			else
 				tape[head] = nextSym;
