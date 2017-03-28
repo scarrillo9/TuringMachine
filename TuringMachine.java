@@ -2,16 +2,20 @@ import java.util.*;
 
 public class TuringMachine {
 	public static void main(String[] args){
-		
+		System.out.println("--Odd evaluation--");
 		int[] tape = userInput();
-		acceptsLast1(tape);
+		acceptsOdd(tape);
+		
+		System.out.println("\n--Even evaluation--");
+		tape = userInput();
+		acceptsEven(tape);
 		
 	}//end main method
 	
 	public static int[] userInput(){
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input word to evaluate if the last digit is 1: ");
+		System.out.println("Input word to evaluate: ");
 		String word = input.nextLine();
 		String[] strTape = word.split("");
 		int[] tape = new int[strTape.length];
@@ -23,7 +27,64 @@ public class TuringMachine {
 		return tape;
 	}//end userInput
 	
-	public static void acceptsLast1(int[] tape){
+	public static void acceptsEven(int[] tape){
+		int N = 6;
+		int M = 3;
+		
+		int[][] state = new int[N][M];
+		char[][] LR = new char[N][M];
+		int[][] symbol = new int[N][M];
+		
+		for(int i = 0; i < tape.length; i++){	//this for loop changes 0's to 2
+			if(tape[i] == 0)					//0 is blank, 1 is 1 and 2 is 0
+				tape[i] = 2;
+		}//end for loop
+		
+		//RULES FOR TURING MACHINE
+		state[0][0] = 1;	//start, blank -> R, rstart
+		LR[0][0] = 'R';
+		symbol[0][0] = 0;
+		
+		state[1][1] = 3;	//rstart, 1 -> last1, R
+		LR[1][1] = 'R';
+		symbol[1][1] = 1;
+		
+		state[1][2] = 2;	//rstart, 0 -> last0, R
+		LR[1][2] = 'R';
+		symbol[1][2] = 2;
+		
+		state[3][1] = 3;	//last1, 1 -> R
+		LR[3][1] = 'R';
+		symbol[3][1] = 1;
+		
+		state[3][2] = 2;	//last1, 0 -> last0, R
+		LR[3][2] = 'R';
+		symbol[3][2] = 2;
+		
+		state[2][2] = 2;	//last0, 0 -> R
+		LR[2][2] = 'R';
+		symbol[2][2] = 2;
+		
+		state[2][1] = 3;	//last0, 1 -> last1, R
+		LR[2][1] = 'R';
+		symbol[2][1] = 1;
+		
+		state[3][0] = 5;	//last1, blank -> reject
+		LR[3][0] = ' ';
+		symbol[3][0] = 0;
+		
+		state[2][0] = 4;	//last0, blank -> accept
+		LR[2][0] = ' ';
+		symbol[2][0] = 0;
+		
+		state[1][0] = 5;	//rstart, blank -> reject
+		LR[1][0] = ' ';
+		symbol[1][0] = 0;
+		
+		turing(N, M, state, symbol, LR, tape);
+	}//end acceptsEven
+	
+	public static void acceptsOdd(int[] tape){
 		int N = 6;
 		int M = 3;
 		
